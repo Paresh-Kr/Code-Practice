@@ -1,0 +1,9 @@
+-- SELECT temp.sname
+-- FROM temp
+-- WHERE temp.age =
+--     (SELECT MAX(T.age)
+--      FROM temp T)
+-- SELECT S.sname, S.age
+-- INTO temp
+-- FROM Student S
+-- WHERE S.year_started = '2015'
