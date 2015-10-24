@@ -1,0 +1,27 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>My first page</title>
+    </head>
+    <body>
+        <h1>My first page</h1>
+        <p>Test some basic syntax of JS</p>
+        <button type="button" onclick="myfunction()">onclick</button>
+        <p id="demo"></p>
+        <script>
+        function myfunction()
+        {
+        document.getElementById("demo").innerHTML =
+        typeof "john" + "<br>" +
+        typeof 3.14 + "<br>" +
+        typeof false + "<br>" +
+        typeof [1,2,3,4] + "<br>" +
+        typeof {name:'john', age:34}+
+        typeof undefined + "<br>" +
+        typeof null + "<br>" +
+        (null === undefined) + "<br>" +
+        (null == undefined);
+        }
+        </script>
+    </body>
+</html>
