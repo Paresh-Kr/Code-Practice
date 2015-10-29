@@ -1,0 +1,35 @@
+<html>
+<head><title>Logout</title></head>
+<style type="text/css">
+body {
+padding-top: 50px;
+padding-bottom: 50px;
+background-color: #f5f5f5;
+}
+.center {
+margin: auto;
+width: 30%;
+border:3px solid #8AC007;
+padding: 10px;
+}
+a:link {
+background-color: #B2FF99;
+}
+a:visited {
+background-color: #FFFF85;
+}
+a:hover {
+background-color: #FF704D;
+}
+a:active {
+background-color: #FF704D;
+}
+</style>
+<body>
+    <div class="center">
+        <h2>Logged out</h2>
+        <% session.invalidate(); %>
+        <a href="/photoshare/index.jsp">Login again</a>
+    </div>
+</body>
+</html>
