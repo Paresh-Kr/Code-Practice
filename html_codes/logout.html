@@ -1,35 +1,231 @@
 <html>
-<head><title>Logout</title></head>
-<style type="text/css">
-body {
-padding-top: 50px;
-padding-bottom: 50px;
-background-color: #f5f5f5;
-}
-.center {
-margin: auto;
-width: 30%;
-border:3px solid #8AC007;
-padding: 10px;
-}
-a:link {
-background-color: #B2FF99;
-}
-a:visited {
-background-color: #FFFF85;
-}
-a:hover {
-background-color: #FF704D;
-}
-a:active {
-background-color: #FF704D;
-}
-</style>
+<head><title>Photo Sharing</title>
+</head>
+
 <body>
-    <div class="center">
-        <h2>Logged out</h2>
-        <% session.invalidate(); %>
-        <a href="/photoshare/index.jsp">Login again</a>
-    </div>
+<h1>Dickson's Photoshare</h1>
+
+Hello <b><code><%= request.getUserPrincipal().getName()  %></code></b>, click here to
+<a href="/photoshare/logout.jsp">log out</a>
+
+<h2>Top 10 Users</h2>
+<tr>
+    <%  
+    //Get all userids and their scores
+    RandomDao randomDao = new RandomDao();
+    List<Integer> userIDs = randomDao.getAllUserIDs();
+    int size = userIDs.size();
+    String[] userInfoList = new String[size];
+    int[] userScoreList = new int[size];
+    //INDEX 0 (TOP) - 9 (LAST)
+    String[] currentTopUsers = {"EMPTY","EMPTY","EMPTY","EMPTY","EMPTY","EMPTY","EMPTY","EMPTY","EMPTY","EMPTY"};
+    int[] currentTopScores = {0,0,0,0,0,0,0,0,0,0};
+    int count = 0;
+    
+    for (Integer userID : userIDs) {
+        int numOfPicturesUploaded = randomDao.getNumOfPicturesUploaded(userID);
+        int numOfCommentsLeft = randomDao.getNumOfCommentsLeft(userID);
+        userInfoList[count] = randomDao.getUserInfo(userID);
+        userScoreList[count] = numOfPicturesUploaded + numOfCommentsLeft;
+        count++;
+    }
+    
+    for (int kk=0; kk<size; kk++){
+        if(userScoreList[kk]>=currentTopScores[0]){
+            currentTopScores[9] = currentTopScores[8];
+            currentTopUsers[9] = currentTopUsers[8];
+            currentTopScores[8] = currentTopScores[7];
+            currentTopUsers[8] = currentTopUsers[7];    
+            currentTopScores[7] = currentTopScores[6];
+            currentTopUsers[7] = currentTopUsers[6];
+            currentTopScores[6] = currentTopScores[5];
+            currentTopUsers[6] = currentTopUsers[5];
+            currentTopScores[5] = currentTopScores[4];
+            currentTopUsers[5] = currentTopUsers[4];
+            currentTopScores[4] = currentTopScores[3];
+            currentTopUsers[4] = currentTopUsers[3];
+            currentTopScores[3] = currentTopScores[2];
+            currentTopUsers[3] = currentTopUsers[2];
+            currentTopScores[2] = currentTopScores[1];
+            currentTopUsers[2] = currentTopUsers[1];
+            currentTopScores[1] = currentTopScores[0];
+            currentTopUsers[1] = currentTopUsers[0];
+            currentTopScores[0] = userScoreList[kk];
+            currentTopUsers[0] = userInfoList[kk];
+        }
+        else if(userScoreList[kk]>=currentTopScores[1]){
+            currentTopScores[9] = currentTopScores[8];
+            currentTopUsers[9] = currentTopUsers[8];
+            currentTopScores[8] = currentTopScores[7];
+            currentTopUsers[8] = currentTopUsers[7];    
+            currentTopScores[7] = currentTopScores[6];
+            currentTopUsers[7] = currentTopUsers[6];
+            currentTopScores[6] = currentTopScores[5];
+            currentTopUsers[6] = currentTopUsers[5];
+            currentTopScores[5] = currentTopScores[4];
+            currentTopUsers[5] = currentTopUsers[4];
+            currentTopScores[4] = currentTopScores[3];
+            currentTopUsers[4] = currentTopUsers[3];
+            currentTopScores[3] = currentTopScores[2];
+            currentTopUsers[3] = currentTopUsers[2];
+            currentTopScores[2] = currentTopScores[1];
+            currentTopUsers[2] = currentTopUsers[1];
+            currentTopScores[1] = userScoreList[kk];
+            currentTopUsers[1] = userInfoList[kk];
+        }
+        else if(userScoreList[kk]>=currentTopScores[2]){
+            currentTopScores[9] = currentTopScores[8];
+            currentTopUsers[9] = currentTopUsers[8];
+            currentTopScores[8] = currentTopScores[7];
+            currentTopUsers[8] = currentTopUsers[7];    
+            currentTopScores[7] = currentTopScores[6];
+            currentTopUsers[7] = currentTopUsers[6];
+            currentTopScores[6] = currentTopScores[5];
+            currentTopUsers[6] = currentTopUsers[5];
+            currentTopScores[5] = currentTopScores[4];
+            currentTopUsers[5] = currentTopUsers[4];
+            currentTopScores[4] = currentTopScores[3];
+            currentTopUsers[4] = currentTopUsers[3];
+            currentTopScores[3] = currentTopScores[2];
+            currentTopUsers[3] = currentTopUsers[2];
+            currentTopScores[2] = userScoreList[kk];
+            currentTopUsers[2] = userInfoList[kk];
+        }
+        else if(userScoreList[kk]>=currentTopScores[3]){
+            currentTopScores[9] = currentTopScores[8];
+            currentTopUsers[9] = currentTopUsers[8];
+            currentTopScores[8] = currentTopScores[7];
+            currentTopUsers[8] = currentTopUsers[7];    
+            currentTopScores[7] = currentTopScores[6];
+            currentTopUsers[7] = currentTopUsers[6];
+            currentTopScores[6] = currentTopScores[5];
+            currentTopUsers[6] = currentTopUsers[5];
+            currentTopScores[5] = currentTopScores[4];
+            currentTopUsers[5] = currentTopUsers[4];
+            currentTopScores[4] = currentTopScores[3];
+            currentTopUsers[4] = currentTopUsers[3];
+            currentTopScores[3] = userScoreList[kk];
+            currentTopUsers[3] = userInfoList[kk];
+        }
+        else if(userScoreList[kk]>=currentTopScores[4]){
+            currentTopScores[9] = currentTopScores[8];
+            currentTopUsers[9] = currentTopUsers[8];
+            currentTopScores[8] = currentTopScores[7];
+            currentTopUsers[8] = currentTopUsers[7];    
+            currentTopScores[7] = currentTopScores[6];
+            currentTopUsers[7] = currentTopUsers[6];
+            currentTopScores[6] = currentTopScores[5];
+            currentTopUsers[6] = currentTopUsers[5];
+            currentTopScores[5] = currentTopScores[4];
+            currentTopUsers[5] = currentTopUsers[4];
+            currentTopScores[4] = userScoreList[kk];
+            currentTopUsers[4] = userInfoList[kk];
+        }
+        else if(userScoreList[kk]>=currentTopScores[5]){
+            currentTopScores[9] = currentTopScores[8];
+            currentTopUsers[9] = currentTopUsers[8];
+            currentTopScores[8] = currentTopScores[7];
+            currentTopUsers[8] = currentTopUsers[7];    
+            currentTopScores[7] = currentTopScores[6];
+            currentTopUsers[7] = currentTopUsers[6];
+            currentTopScores[6] = currentTopScores[5];
+            currentTopUsers[6] = currentTopUsers[5];
+            currentTopScores[5] = userScoreList[kk];
+            currentTopUsers[5] = userInfoList[kk];
+        }
+        else if(userScoreList[kk]>=currentTopScores[6]){
+            currentTopScores[9] = currentTopScores[8];
+            currentTopUsers[9] = currentTopUsers[8];
+            currentTopScores[8] = currentTopScores[7];
+            currentTopUsers[8] = currentTopUsers[7];    
+            currentTopScores[7] = currentTopScores[6];
+            currentTopUsers[7] = currentTopUsers[6];
+            currentTopScores[6] = userScoreList[kk];
+            currentTopUsers[6] = userInfoList[kk];
+        }
+        else if(userScoreList[kk]>=currentTopScores[7]){
+            currentTopScores[9] = currentTopScores[8];
+            currentTopUsers[9] = currentTopUsers[8];
+            currentTopScores[8] = currentTopScores[7];
+            currentTopUsers[8] = currentTopUsers[7];    
+            currentTopScores[7] = userScoreList[kk];
+            currentTopUsers[7] = userInfoList[kk];
+        }
+        else if(userScoreList[kk]>=currentTopScores[8]){
+            currentTopScores[9] = currentTopScores[8];
+            currentTopUsers[9] = currentTopUsers[8];    
+            currentTopScores[8] = userScoreList[kk];
+            currentTopUsers[8] = userInfoList[kk];
+        }
+        else if(userScoreList[kk]>=currentTopScores[9]){
+            currentTopScores[9] = userScoreList[kk];
+            currentTopUsers[9] = userInfoList[kk];
+        }
+    }
+    
+    for(int ii=0; ii<10; ii++){
+        out.println("<td><b>Score:</b> "+currentTopScores[ii]+" <b>User:</b> "+currentTopUsers[ii]+"</td><br/>");
+    }%>
+</tr>
+
+ <br/><a href="friends.jsp">Your Friends</a>
+ <br/><a href="albums.jsp">Your Albums</a>
+ <br/><a href="globaltags.jsp">View Pictures By Most Popular Tags</a>
+ <br/><a href="youmaylike.jsp">View Pictures You May Also Like</a>
+ 
+<h2>Public Picture Search</h2>
+<%String search  = request.getParameter("search");%>
+<form action="index.jsp" method="post">
+    Enter tags separated by spaces: <input type="text" name="search">
+    <input type="submit" value="Search"/><br/>
+</form>
+<%  if (search != null){%>
+    You searched for pictures with the following tags: <%= search%>
+    <%String[] tags = search.split(" ");
+      int numOfTags = tags.length;
+      List<HREF_AND_IMGSRC> firstTagSet = randomDao.getHrefAndImgSrcFromTag(tags[0]);
+      List<HREF_AND_IMGSRC> allPossibleMatches = new ArrayList<HREF_AND_IMGSRC>();
+      List<HREF_AND_IMGSRC> matches = new ArrayList<HREF_AND_IMGSRC>();
+      for (int ww=0; ww<numOfTags; ww++){
+        List<HREF_AND_IMGSRC> tempTag = randomDao.getHrefAndImgSrcFromTag(tags[ww]);
+        allPossibleMatches.addAll(tempTag);
+      }
+      for (HREF_AND_IMGSRC searchTag : firstTagSet) {
+        int occurences = 0;
+        int pictureID1 = searchTag.getPictureID();
+        int albumID1 = searchTag.getAlbumID();
+        for (HREF_AND_IMGSRC anyTag : allPossibleMatches) {
+            int pictureID2 = anyTag.getPictureID();
+            int albumID2 = anyTag.getAlbumID();
+            if((pictureID1 == pictureID2) && (albumID1 == albumID2)){
+                occurences++;
+            }
+        }
+        if(occurences == numOfTags){
+        //SUCCESSFUL MATCH
+        matches.add(searchTag);
+        }
+      }%>        
+    <table>
+        <tr>
+        <%
+            for (HREF_AND_IMGSRC match : matches) {
+                int pictureId = match.getPictureID();
+                int selectedAlbumID = match.getAlbumID();
+        %>
+                <td><a href="picture.jsp?id=<%= pictureId %>&albumid=<%= selectedAlbumID%>">
+                    <img src="/photoshare/img?t=1&picture_id=<%= pictureId %>"/></a></td>
+        <%
+            }
+        %>
+        </tr>
+    </table>
+        <%if (allPossibleMatches.size() == 0){%>
+            <b>No results were found. Try again or view by most popular tags to see existing tags.</b>
+        <%}%>
+<%}else{%>
+    Search parameters cannot be empty.
+<%}%>
+
 </body>
 </html>

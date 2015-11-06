@@ -1,61 +1,106 @@
-<!DOCTYPE>
-<html lang="en-US">
+<!DOCTYPE html>
+<html>
     <head>
-        <title>My first page</title>
-        <!-- <link rel="stylesheet" href="styles.css"> -->
-        <style type="text/css">
-        h1{
-        color:blue;
-        font-family:verdana;
-        font-size:300%;}
-        p{
-        border:1px solid black;
-        padding:10px;
-        margin:30px;
-        color:red;
-        font-family:courier;
-        font-size:160%;
+        <style>
+        body {
+        font-family: "Lucida Sans", Verdana, sans-serif;
+        background-color: #f5f5f5;
+        text-align: center;
         }
-        a:link{color:green; background-color:transparent; text-decoration:none}
-        a:visited {color:purple; background-color:transparent; text-decoration:none}
-        a:hover{color:red; background-color:transparent; text-decoration:underline}
-        a:active{color:yellow; background-color:transparent; text-decoration:underline}
-        img {width:50%; height: 50%}
-        table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
+        .nav ul {
+        list-style: none;
+        background-color: #444;
+        text-align: center;
+        padding: 0;
+        margin: 0;
         }
-        th, td {
-        padding: 5px;}
-        th {
-        text-align: left;}
+        .nav li {
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.2em;
+        line-height: 40px;
+        text-align: left;
+        }
+        .nav a {
+        text-decoration: none;
+        color: #fff;
+        display: block;
+        padding-left: 15px;
+        border-bottom: 1px solid #888;
+        transition: .3s background-color;
+        }
+        .nav a:hover {
+        background-color: #005f5f;
+        }
+        .nav a.active {
+        background-color: #aaa;
+        color: #444;
+        cursor: default;
+        }
+        /* Sub Menus */
+        .nav li li {
+        font-size: .8em;
+        }
+        /*******************************************
+        Style menu for larger screens
+        Using 650px (130px each * 5 items), but ems
+        or other values could be used depending on other factors
+        ********************************************/
+        @media screen and (min-width: 650px) {
+        .nav li {
+        width: 130px;
+        border-bottom: none;
+        height: 50px;
+        line-height: 50px;
+        font-size: 1.4em;
+        display: inline-block;
+        margin-right: -4px;
+        }
+        .nav a {
+        border-bottom: none;
+        }
+        .nav > ul > li {
+        text-align: center;
+        }
+        .nav > ul > li > a {
+        padding-left: 0;
+        }
+        /* Sub Menus */
+        .nav li ul {
+        position: absolute;
+        display: none;
+        width: inherit;
+        }
+        .nav li:hover ul {
+        display: block;
+        }
+        .nav li ul li {
+        display: block;
+        }
+        }
         </style>
     </head>
-    <body style="background-color: lightgrey">
-        <h1>h1</h1>
-        <p title="About W3Schools" style="font-family: verdana">W3Schools is a web developer's site.
-        </p>
-        <p>Browsers usually indent blockquote elements.</p>
-        <blockquote cite="http://www.worldwildlife.org/who/index.html">
-            For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization,WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.
-        </blockquote>
-        <hr>
-        <p title="About W3Schools" style="color: blue"><b>W3Schools is a web developer's site</b>.</p>
-        <a href="http://www.w3schools.com/html/html_basic.asp" target="_blank">This is a link</a>
-        <br>
-        <!-- <img src="1.jpg" alt="W3Schools.com" width="104" height="142"> -->
-        <img src="2.gif" alt="Computer Man" style="width:100px;height:100px;">
-        <table style="width:50%">
-            <caption>Monthly savings</caption>
-            <tr>
-                <th>Name</th>
-                <th colspan="2">Telephone</th>
-            </tr>
-            <tr>
-                <td>Bill Gates</td>
-                <td>555 77 854</td>
-                <td>555 77 855</td>
-            </tr>
-        </table>
-    </body>
-</html>
+    <body class="news">
+        <header>
+            <div class="nav">
+                <ul>
+                    <li class="home"><a href="#">Home</a></li>
+                    <li class="tutorials"><a href="#">Tutorials</a>
+                    <ul>
+                        <li><a href="#">Tutorial #1</a></li>
+                        <li><a href="#">Tutorial #2</a></li>
+                        <li><a href="#">Tutorial #3</a></li>
+                    </ul>
+                </li>
+                <li class="about"><a class="active" href="#">About</a></li>
+                <li class="news"><a href="#">Newsletter</a>
+                <ul>
+                    <li><a href="#">News #1</a></li>
+                    <li><a href="#">News #2</a></li>
+                    <li><a href="#">News #3</a></li>
+                </ul>
+            </li>
+            <li class="contact"><a href="#">Contact</a></li>
+        </ul>
+    </div>
+</header>
+</body>

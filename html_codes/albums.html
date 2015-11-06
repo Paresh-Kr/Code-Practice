@@ -1,0 +1,81 @@
+<html>
+    <head><title>My Albums</title>
+        <style>
+        body {
+        font-family: "Lucida Sans", Verdana, sans-serif;
+        background-color: #f5f5f5;
+        }
+        .header {
+        padding: 0.5%;
+        text-align: center;
+        }
+        h1{
+        font-size: 1.625em;
+        }
+        h2{
+        font-size: 1.375em;
+        }
+        .left{
+        float:left;
+        width: 25%;
+        text-align: center;
+        }
+        .right{
+        float:left;
+        width: 25%;
+        text-align: center;
+        }
+        .center{
+        margin: auto;
+        border:3px solid #8AC007;
+        padding: 10px;
+        float:left;
+        width: 45%;
+        text-align: left;
+        }
+        ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        }
+        a:link {
+        background-color: #B2FF99;
+        }
+        a:visited {
+        background-color: #FFFF85;
+        }
+        a:hover {
+        background-color: #FF704D;
+        }
+        a:active {
+        background-color: #FF704D;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Photo Sharing</h1>
+        </div>
+        <div>
+            <p align="right"><a href="/photoshare/index.jsp">Home</a></p>
+        </div>
+        <div>
+            <h2>Existing Albums</h2>
+            <table>
+                <tr><a href="/photoshare/album.jsp?album_id=">Boston</a></tr>
+                <br>
+                <tr><a href="/photoshare/album.jsp?album_id=">Dogs</a></tr>
+            </table>
+            <h2>Create An New Album</h2>
+            <form action="albums.jsp" method="post">
+                Name: <input type="text" name="name"/>
+                <input type="submit" value="Create"/>
+            </form>
+            <h2>Delete Albums</h2>
+            <form action="albums.jsp" method="post">
+                Name: <input type="text" name="name"/>
+                <input type="submit" value="Create"/>
+            </form>
+        </div>
+    </body>
+</html>

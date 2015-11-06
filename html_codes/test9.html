@@ -1,0 +1,79 @@
+<html>
+<head><title>Photo Sharing</title></head>
+
+<body>
+<h1>Katsu's Photoshare</h1>
+
+Hello <b><code><%= request.getUserPrincipal().getName()  %></code></b>, click here to
+<a href="/photoshare/logout.jsp">log out</a>
+
+<h2>Top Users</h2>
+<a href="topusers.jsp">List the top Users</a>
+
+<h2>Disjunctive Search</h2>
+<a href="disjunctiveQuery.jsp">Disjunctive tag search</a>
+
+<h2>Conjective Search</h2>
+<a href="conjunctiveQuery.jsp">Do a two tag search</a>
+
+<h2>Top Tags</h2>
+<a href="toptags.jsp">View the top 10 tags</a>
+
+<h2>View Photos</h2>
+<a href="showpictures.jsp">View some Pictures</a>
+
+<h2>List my Friends</h2>
+<a href="/photoshare/listfriends.jsp">List my Friends</a>
+
+<h2>Search for Friends</h2>
+<a href="/photoshare/search.jsp">Search</a>
+
+<h2>Create a new Album</h2>
+Click to create an album<a href="/photoshare/newalbum.jsp">Link</a>
+
+<h2>Upload a new picture</h2>
+
+<form action="index.jsp" enctype="multipart/form-data" method="post" id="uploadImage">
+    Filename: <input type="file" name="filename"/>
+    <input type="submit" value="Upload"/><br/>
+</form>
+
+<%
+   PictureDao pictureDao = new PictureDao();
+   AlbumDao albumDao = new AlbumDao();
+    try {
+        Picture picture = imageUploadBean.upload(request);
+        if (picture != null) {
+        int aid = albumDao.getAlbumID(picture.getAlbumname());
+            pictureDao.save(picture,aid);
+        }
+    } catch (FileUploadException e) {
+        e.printStackTrace();
+    }
+%>
+
+<select name="albumname" form="uploadImage">
+  <%    
+    List<String> albumList = albumDao.getAlbums(request.getUserPrincipal().getName());
+    if(!albumList.isEmpty()){
+        for(String albumName: albumList){ %>
+            <option value=<%= albumName%>><%= albumName%> </option>
+  <%        }
+    }%>
+</select>
+
+<h2>Delete Album</h2>
+<form action="index.jsp" method="post">
+    <input type="text" name="albumDelete">
+    <input type="submit" value="Delete">
+</form>
+
+<% if(request.getParameter("albumDelete")!=null){
+    boolean doneDelete = albumDao.delete(request.getParameter("albumDelete"));  
+    if(doneDelete){%>
+        <h2>Delete Successful </h2>
+<%}}%>
+
+
+</body>
+</html>
