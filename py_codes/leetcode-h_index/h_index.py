@@ -4,6 +4,7 @@ class Solution(object):
         :type citations: List[int]
         :rtype: int
         """
+        print list(enumerate(sorted(citations, reverse=True)))
         for i, c in enumerate(sorted(citations, reverse=True)):
             if i >= c:
                 return i
